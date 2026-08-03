@@ -36,10 +36,7 @@ After clicking through the website we see that its very light, theres a form at 
 
 This page doesnt seem to provide us with any attack surfaces, so enumerate the website and see what we can find:
 
-- NOTE:
-	
-	Be careful when fuzzing, if you overload the server you'll get a "No space left on device" error. If this happens you'll need to reset the machine.
-
+- NOTE: Be careful when fuzzing, if you overload the server you'll get a "No space left on device" error. If this happens you'll need to reset the machine.
 
 	ffuf -ic -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://orion.htb/FUZZ -e .php,.sh,.jpg,.jpeg,.png,.html,.txt,.bak,.js -mc all -fc 404,403
 
