@@ -38,7 +38,7 @@ This page doesnt seem to provide us with any attack surfaces, so enumerate the w
 
 - NOTE: Be careful when fuzzing, if you overload the server you'll get a "No space left on device" error. If this happens you'll need to reset the machine.
 
-	ffuf -ic -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://orion.htb/FUZZ -e .php,.sh,.jpg,.jpeg,.png,.html,.txt,.bak,.js -mc all -fc 404,403
+		ffuf -ic -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://orion.htb/FUZZ -e .php,.sh,.jpg,.jpeg,.png,.html,.txt,.bak,.js -mc all -fc 404,403
 
 
 - From from this we've found a few other pages, lets start by going to http://orion.htb/admin
