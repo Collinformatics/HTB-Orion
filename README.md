@@ -3,6 +3,7 @@
 This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0.
 
 https://nvd.nist.gov/vuln/detail/CVE-2025-32432
+
 https://github.com/c0gnit00/CVE-2025-32432
 
 
@@ -38,19 +39,9 @@ This page doesnt seem to provide us with any attack surfaces, so enumerate the w
 - NOTE:
 	
 	Be careful when fuzzing, if you overload the server you'll get a "No space left on device" error. If this happens you'll need to reset the machine.
-	
+
 
 	ffuf -ic -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://orion.htb/FUZZ -e .php,.sh,.jpg,.jpeg,.png,.html,.txt,.bak,.js -mc all -fc 404,403
-
-admin      [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 108ms]
-assets     [Status: 301, Size: 178, Words: 6, Lines: 8, Duration: 91ms]
-index.html [Status: 200, Size: 9689, Words: 2708, Lines: 183, Duration: 297ms]
-index      [Status: 200, Size: 12272, Words: 1076, Lines: 386, Duration: 555ms]
-index.php  [Status: 200, Size: 12272, Words: 1076, Lines: 386, Duration: 549ms]
-index.html [Status: 200, Size: 9689, Words: 2708, Lines: 183, Duration: 95ms]
-index.php  [Status: 200, Size: 12272, Words: 1076, Lines: 386, Duration: 902ms]
-logout     [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 678ms]
-wp-admin   [Status: 418, Size: 54217, Words: 5082, Lines: 662, Duration: 692ms]
 
 
 - From from this we've found a few other pages, lets start by going to http://orion.htb/admin
