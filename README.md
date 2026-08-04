@@ -72,11 +72,12 @@ Now that we've got a shell, lets see what network services are listening for con
 
 	ss -ntlp
 
-- Port 22 (ssh)
-- Port 23 (Telnet) on 127.0.0.1
-- Port 53 (DNS)
-- Port 80 (nginx)
-- Port 3306 (MySQL) on 127.0.0.1
+- This reveals 2 new services
+
+	- Telnet on port 23
+	
+	- MySQL on port 3306
+
 
 We can now see new services, Telnet and MySQL, that we didnt see before with our nmap scan because they were not exposed to the outside world. Lets investigate them.
 
