@@ -25,7 +25,7 @@ Since weve got a website lets add the ip to the hosts file:
 
 After clicking through the website we see that its very light, theres a form at the bottom that fails to send a request due to a missing API, and theres no links to other webpages.
 
-This page doesnt seem to provide us with any attack surfaces, so enumerate the website and see what we can find:
+This page doesnt seem to provide us with any attack surfaces, so let's enumerate the website and see what we can find:
 
 NOTE: Be careful when fuzzing, if you overload the server you'll get a "No space left on device" error. If this happens you'll need to reset the machine.
 
