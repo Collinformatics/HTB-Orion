@@ -72,20 +72,20 @@ Now that we've got a shell, lets see what network services are listening for con
 
 	ss -ntlp
 
-- This reveals 2 new services
+- This reveals 2 new services that we didnt see with our nmap scan because they were not exposed to the outside world.
 
 	- Telnet on port 23
 	
 	- MySQL on port 3306
 
 
-We can now see new services, Telnet and MySQL, that we didnt see before with our nmap scan because they were not exposed to the outside world. Lets investigate them.
+Lets first investigate MySQL.
 
-If we try to run the mysql command, we'll be denided because of our username. So lets try to find a password.
+- If we try to run the mysql command, we'll be denided. So lets try to find a password.
 
-First look around in our starting directory, which leads us here:
+First let's look around in our starting directory, which leads us here:
 
-	cd html/craft/
+	ls -la html/craft/
 
 If we list all files, including the hidden ones, we'll find .env, which this file contains login credentials for mysql.
 
