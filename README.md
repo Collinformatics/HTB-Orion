@@ -76,7 +76,7 @@ Now that we've got RCE, lets get a shell on the server:
 
 Now that we've got a shell, lets see what network services are listening for connections:
 
-	ss -ntlp
+	ss -tlpn
 
 - This reveals 2 new services that we didnt see with our nmap scan because they were not exposed to the outside world.
 
