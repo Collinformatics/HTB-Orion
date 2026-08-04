@@ -48,7 +48,7 @@ Note:
 - The path /var/lib/php/sessions/sess_<sessionID> was found to work in this instance.
 
 
-A working exploit script can be found at: https://github.com/c0gnit00/CVE-2025-32432
+A useable exploit can be found at: https://github.com/c0gnit00/CVE-2025-32432
 
 - Thankfully for us, c0gnit00 modified the exploit specificly for this CTF.
 
