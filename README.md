@@ -68,6 +68,9 @@ Now that we've got RCE, lets get a shell on the server:
 		./exploit.py -u http://orion.htb/ -c "$(cat shell.sh)"
 
 
+
+# Privilege Escalation:
+
 Now that we've got a shell, lets see what network services are listening for connections:
 
 	ss -ntlp
@@ -110,19 +113,6 @@ Now we've got a hash, lets crack it.
 
 
 
-# Privilege Escalation:
-
-
-
-
-
-
-
-
-
-
-
-============================================================================
 
 
 
