@@ -1,4 +1,4 @@
-z# Hack The Box Labs: Orion
+# Hack The Box Labs: Orion
 
 This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0.
 
