@@ -123,7 +123,9 @@ Now we can try to crack it:
 
 	hashcat -m 3200 hash.txt /tmp/rockyou.txt
 
-- Looks like they chose a simple passwd, its: darkangel
+- Looks like they chose a simple passwd, its:
+
+		darkangel
 
 
 The username is admin, but from the MySQL table we found an email for adam@orion.htb, lets try to login as adam, and the passwd we just earned:
