@@ -1,11 +1,13 @@
 # Hack The Box Labs: Orion
 
-This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0.
+
+This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0. This exploit allows for remote code execution (RCE). From there and exposed MySQL passwd allows us to switch to a users, and from there we can exploit Telnet 2.7 with CVE-2026-24061 to get root access.
 
 https://nvd.nist.gov/vuln/detail/CVE-2025-32432
 
 https://github.com/c0gnit00/CVE-2025-32432
 
+https://nvd.nist.gov/vuln/detail/CVE-2026-24061
 
 
 # Recon:
@@ -123,12 +125,33 @@ Now we can try to crack it:
 - Looks like they chose a simple passwd, its: darkangel
 
 
+The username is admin, but from the MySQL table we found an email for adam@orion.htb, lets try to login as adam, and the passwd we just earned:
+
+	ssh adam@10.129.75.213
+
+- We're in!
+
+Next we can get the user flag with:
+
+	cat user.txt
 
 
 
+Now that we've exploited MySQL, lets move on to Telnet. 
 
+First, well determine which version we are working with:
 
+	telnet -V
 
+- If we search for CVEs for Telnet 2.7, we'll find CVE-2026-24061.
 
+CVE-2026-24061 describes a telnetd vulnerability that allows remote authentication bypass USER environment variable is set to "-f root".
 
+Lets set the environment variable USER to "-f root", and then call telnet with the automatic login flag (-a). This will tell telnet to check the inherited envorinment where it finds the USER variable.
+
+	USER="-f root" telnet -a localhost
+
+Now that we are root, lets get the final flag:
+
+	cat /root/root.txt
 
