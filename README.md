@@ -128,7 +128,7 @@ Now we can try to crack it:
 		darkangel
 
 
-The username is admin, but from the MySQL table we found an email for adam@orion.htb, lets try to login as adam, and the passwd we just earned:
+Going back to the MySQL data, the username was admin, but the listed email was adam@orion.htb, lets the use the passwd we just earned to login as adam:
 
 	ssh adam@10.129.77.211
 
