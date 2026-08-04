@@ -1,7 +1,7 @@
 # Hack The Box Labs: Orion
 
 
-This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0, and allows for remote code execution (RCE). From there and exposed MySQL passwd allows us to switch to a users, and from there we can exploit Telnet 2.7 with CVE-2026-24061, Base Score 9.8, to get root access.
+This lab exploits Craft CMS version 5.6.16, the CSV-2025-32432 has a Base Score of 10.0, and allows for remote code execution (RCE). From there and exposed MySQL passwd allows us to switch to a users. We can also exploit Telnet 2.7 with CVE-2026-24061, Base Score 9.8, to get root access.
 
 https://nvd.nist.gov/vuln/detail/CVE-2025-32432
 
