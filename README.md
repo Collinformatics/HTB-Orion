@@ -52,7 +52,7 @@ A working exploit script can be found at: https://github.com/c0gnit00/CVE-2025-3
 
 - Thankfully for us, c0gnit00 modified the exploit specificly for this CTF.
 
-Lets test out the script and try to get remote code execution (RCE):
+Lets test out the script and try to get RCE:
 
 	./exploit.py -u http://orion.htb/ -c 'id'
 
