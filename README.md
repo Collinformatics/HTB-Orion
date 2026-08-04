@@ -148,9 +148,9 @@ First, well determine which version we are working with:
 
 - If we search for CVEs for Telnet 2.7, we'll find CVE-2026-24061.
 
-CVE-2026-24061 describes a telnetd vulnerability that allows remote authentication bypass USER environment variable is set to "-f root".
+CVE-2026-24061 describes a telnetd vulnerability that allows for remote authentication bypass when the environment variable USER is set to "-f root".
 
-Lets set the environment variable USER to "-f root", and then call telnet with the automatic login flag (-a). This will tell telnet to check the inherited envorinment where it finds the USER variable.
+Lets set USER to "-f root", and then call telnet with the automatic login flag (-a). The -a flag is critical, as this will tell telnet to check the inherited envorinment, where it finds the USER variable.
 
 	USER="-f root" telnet -a localhost
 
